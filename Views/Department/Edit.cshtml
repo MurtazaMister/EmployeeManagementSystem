@@ -1,0 +1,19 @@
+﻿@model Department
+
+<form asp-action="EditHelper" method="post" class="d-flex flex-column justify-content-center align-items-center container">
+	<div class="d-flex flex-row justify-content-between w-25 mb-3">
+		<label asp-for="Name"></label>
+		<input asp-for="Name" />
+	</div>
+	<div>
+		<span class="text-danger" asp-validation-for="Name"></span>
+	</div>
+	<input type="hidden" asp-for="Id" />
+	<div>
+		<input type="submit" value="Update" />
+	</div>
+</form>
+
+@section Scripts{
+	<partial name="_ValidationScriptsPartial" />
+}

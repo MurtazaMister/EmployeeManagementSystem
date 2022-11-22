@@ -1,0 +1,25 @@
+﻿@model List<Department>
+
+<div class="mt-5 mb-3 container-fluid d-flex flex-row justify-content-between">
+	<h3>Departments</h3>
+	<h5><a asp-action="Create">Add new Departments</a></h5>
+</div>
+
+<table class="table table-striped">
+	<thead>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Actions</th>
+	</thead>
+	@foreach(var item in Model)
+	{
+		<tr>
+			<td>@item.Id</td>
+			<td>@item.Name</td>
+			<td>
+				<a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+				<a asp-route-id="@item.Id" asp-action="Delete" class="btn btn-danger">Delete</a>
+			</td>
+		</tr>
+	}
+</table>

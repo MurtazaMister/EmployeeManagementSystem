@@ -1,0 +1,32 @@
+﻿@{
+	List<Employee> employees = ViewData["employees"] as List<Employee>;
+	List<Department> departments = ViewData["departments"] as List<Department>;
+}
+
+<div class="mt-5 mb-3 container-fluid d-flex flex-row justify-content-between">
+	<h3>Employees</h3>
+	<h5><a asp-action="Create">Add new Employee</a></h5>
+</div>
+
+<table class="table table-striped">
+	<thead>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Department</th>
+		<th>Actions</th>
+	</thead>
+	@foreach(var item in employees)
+	{
+		<tr>
+			<td>@item.Id</td>
+			<td>@item.Name</td>
+			<td>@item.Email</td>
+			<td>@departments.Where(ele=>ele.Id==item.DepartmentId).First().Name</td>
+			<td>
+				<a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+				<a asp-route-id="@item.Id" asp-action="Delete" class="btn btn-danger">Delete</a>
+			</td>
+		</tr>
+	}
+</table>

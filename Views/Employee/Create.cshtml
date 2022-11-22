@@ -1,0 +1,31 @@
+﻿@{
+	List<Department> departments = ViewData["departments"] as List<Department>;
+	Employee employee = ViewData["employee"] as Employee;
+}
+
+<form asp-action="CreateHelper" method="post" class="d-flex flex-column justify-content-center align-items-center container">
+	<div class="d-flex flex-row justify-content-between w-25 mb-3">
+		<label asp-for="@employee.Name"></label>
+		<input asp-for="@employee.Name" />
+		<span class="text-danger" asp-validation-for="@employee.Name"></span>
+	</div>
+	<div class="d-flex flex-row justify-content-between w-25 mb-3">
+		<label asp-for="@employee.Email"></label>
+		<input asp-for="@employee.Email" />
+	</div>
+	<div>
+		<label asp-for="@employee.DepartmentId"></label>
+		<select asp-for="@employee.DepartmentId">
+			@foreach(var item in departments){
+				<option asp-for="@item.Id" value="@item.Id">@item.Name</option>
+			}
+		</select>
+	</div>
+	<div>
+		<input type="submit" value="Create" />
+	</div>
+</form>
+
+@section Scripts{
+	<partial name="_ValidationScriptsPartial" />
+}
